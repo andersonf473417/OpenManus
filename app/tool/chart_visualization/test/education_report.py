@@ -1,9 +1,22 @@
 import asyncio
 import os
 import sys
-print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-from app.agent.data_analysis import DataAnalysis
+
+
+print(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        )
+    )
+)
+sys.path.append(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        )
+    )
+)
 from app.agent.manus import Manus
 
 
@@ -14,7 +27,7 @@ async def main():
     # agent = DataAnalysis()
     agent = Manus()
     await agent.run(
-"""Requirement: Analyze the following data and generate a simple data report with some charts in HTML format.
+        """Requirement: Analyze the following data and generate a simple data report with some charts in HTML format.
 
 Table1: 学生基本信息
 Name,Age,Gender,Grade,Class,StudentID,EnrollmentDate,GuardianName,GuardianPhone,Address,PreviousSchool

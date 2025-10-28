@@ -1,5 +1,6 @@
 from app.tool.chart_visualization.python_execute import NormalPythonExecute
 
+
 class GenerateFinalReport(NormalPythonExecute):
     """A tool for generating final data analysis report"""
 

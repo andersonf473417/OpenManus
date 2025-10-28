@@ -1,21 +1,19 @@
-from app.tool.base import BaseTool, ToolResult
-from typing import ClassVar, Dict
-from pydantic import BaseModel, ConfigDict, Field, model_validator
-from pathlib import Path
+from typing import Dict, List
+
+from pydantic import Field
+
 from app.config import config
-from app.tool.file_operators import (
-    FileOperator,
-    LocalFileOperator,
-    PathLike,
-    SandboxFileOperator,
-)
-from typing import List
+from app.tool.base import BaseTool, ToolResult
+from app.tool.file_operators import FileOperator, LocalFileOperator, SandboxFileOperator
+
 
 class SearchHtmlLibraryResponse(ToolResult):
     """Structured response from the SearchHtmlLibrary tool, inheriting ToolResult."""
 
     report_bootstrap_theme: str = Field(description="The theme of the bootstrap report")
-    components_content: Dict[str, str] = Field(description="The UI components content as a dictionary (component_name: html_content)")
+    components_content: Dict[str, str] = Field(
+        description="The UI components content as a dictionary (component_name: html_content)"
+    )
 
     def __str__(self) -> str:
         """Formatted string with indented HTML content"""
@@ -33,6 +31,7 @@ class SearchHtmlLibraryResponse(ToolResult):
             f"{'\n'.join(components_info)}"
         )
 
+
 class SearchHtmlLibrary(BaseTool):
     """A tool for searching the html library in users' local file system"""
 
@@ -45,7 +44,7 @@ class SearchHtmlLibrary(BaseTool):
     parameters: dict = {
         "type": "object",
         "properties": {
-            "report_bootstrap_theme":{
+            "report_bootstrap_theme": {
                 "description": "The theme of bootstrap template to use.",
                 "enum": [
                     # Light themes
@@ -78,7 +77,7 @@ class SearchHtmlLibrary(BaseTool):
                     # Special styles
                     "Quartz",
                     "Morph",
-                    "Yeti"
+                    "Yeti",
                 ],
                 "default": "Materia",
                 "type": "string",
@@ -88,12 +87,23 @@ class SearchHtmlLibrary(BaseTool):
                 "type": "array",
                 "items": {
                     "type": "string",
-                    "enum": ["blockquote", "card", "chart", "indicator", "list", "nav", "nvabar", "progress", "table", "typography"]
+                    "enum": [
+                        "blockquote",
+                        "card",
+                        "chart",
+                        "indicator",
+                        "list",
+                        "nav",
+                        "nvabar",
+                        "progress",
+                        "table",
+                        "typography",
+                    ],
                 },
                 "default": ["card", "chart", "table"],
                 "minItems": 2,
-                "uniqueItems": True
-            }
+                "uniqueItems": True,
+            },
         },
         "required": ["report_bootstrap_theme", "components"],
     }
@@ -111,9 +121,7 @@ class SearchHtmlLibrary(BaseTool):
         )
 
     async def execute(
-        self,
-        report_bootstrap_theme: str,
-        components: List[str]
+        self, report_bootstrap_theme: str, components: List[str]
     ) -> SearchHtmlLibraryResponse:
         """
         Execute the tool with the given parameters.

@@ -1,9 +1,14 @@
 import asyncio
 import os
 import sys
-print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-from app.agent.data_analysis import DataAnalysis
+
+ROOT = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    )
+)
+sys.path.append(ROOT)
+
 from app.agent.manus import Manus
 
 
@@ -71,5 +76,7 @@ Sleep,Recommended,7-9,hours
 Steps,Active,≥10000,steps/day
 """
     )
+
+
 if __name__ == "__main__":
     asyncio.run(main())

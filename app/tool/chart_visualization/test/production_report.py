@@ -1,9 +1,22 @@
 import asyncio
 import os
 import sys
-print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-from app.agent.data_analysis import DataAnalysis
+
+
+print(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        )
+    )
+)
+sys.path.append(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        )
+    )
+)
 from app.agent.manus import Manus
 
 
@@ -14,7 +27,7 @@ async def main():
     # agent = DataAnalysis()
     agent = Manus()
     await agent.run(
-"""Requirement: Analyze the following data and generate a graphical data report in HTML format. The final product should be a data report.
+        """Requirement: Analyze the following data and generate a graphical data report in HTML format. The final product should be a data report.
 Table1: 销售区域基本信息​
 RegionCode,RegionName,Description
 SW,西南,西南地区销售数据

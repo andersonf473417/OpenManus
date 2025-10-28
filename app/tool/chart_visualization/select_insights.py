@@ -1,4 +1,6 @@
 from app.tool.chart_visualization.python_execute import NormalPythonExecute
+
+
 class SelectInsights(NormalPythonExecute):
     name: str = "insights_selection"
     description: str = (
@@ -9,7 +11,6 @@ class SelectInsights(NormalPythonExecute):
         "3 **Basic Insights**: 'min', 'max'\n\n"
         "**!Must be called immediately after data_visualization completes!**"
         "**!All insights_id must come from the data_visualization analysis results!**"
-
     )
     parameters: dict = {
         "type": "object",
