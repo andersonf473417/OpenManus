@@ -1,9 +1,10 @@
-from app.tool.base import BaseTool, ToolResult
-from typing import ClassVar
-from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pathlib import Path
+from typing import ClassVar
+
 from app.config import config
+from app.tool.base import BaseTool, ToolResult
 from app.tool.chart_visualization.python_execute import NormalPythonExecute
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 
@@ -73,10 +74,13 @@ Examples:
             </div>
         </div>
     </div>
-</div>"""
+</div>""",
             },
         },
         "required": ["report_template_description", "code"],
     }
-    async def execute(self, code: str, report_template_description: str | None = None, timeout=5):
+
+    async def execute(
+        self, code: str, report_template_description: str | None = None, timeout=5
+    ):
         return await super().execute(code, timeout)
