@@ -1,4 +1,6 @@
 from app.tool.chart_visualization.python_execute import NormalPythonExecute
+
+
 class VisualizationPrepare(NormalPythonExecute):
     """A tool for Chart Generation Preparation"""
 
@@ -13,7 +15,7 @@ class VisualizationPrepare(NormalPythonExecute):
             "code_type": {
                 "description": "code type, visualization: csv -> chart",
                 "type": "string",
-                "default": "visualization"
+                "default": "visualization",
             },
             "code": {
                 "type": "string",

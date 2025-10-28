@@ -4,7 +4,16 @@ from app.agent.toolcall import ToolCallAgent
 from app.config import config
 from app.prompt.visualization import NEXT_STEP_PROMPT, SYSTEM_PROMPT
 from app.tool import Terminate, ToolCollection
+from app.tool.chart_visualization.add_insights import AddInsights
+from app.tool.chart_visualization.chart_prepare import VisualizationPrepare
+from app.tool.chart_visualization.data_visualization import DataVisualization
 from app.tool.chart_visualization.python_execute import NormalPythonExecute
+from app.tool.chart_visualization.select_insights import SelectInsights
+from app.tool.chart_visualization.v2.final_report_generation import GenerateFinalReport
+from app.tool.chart_visualization.v2.initial_report_generation import GenerateInitialReport
+from app.tool.chart_visualization.v2.report_beautify import ReportBeautify
+from app.tool.chart_visualization.v2.report_template_generation import ReportTemplateGeneration
+from app.tool.chart_visualization.v2.search_html_library import SearchHtmlLibrary
 # from app.tool.chart_visualization.chart_prepare import VisualizationPrepare
 # from app.tool.chart_visualization.data_visualization import DataVisualization
 # from app.tool.chart_visualization.initial_report_generation import GenerateInitialReport
@@ -12,15 +21,6 @@ from app.tool.chart_visualization.python_execute import NormalPythonExecute
 # from app.tool.chart_visualization.search_report_template import SearchReportTemplate
 # from app.tool.chart_visualization.report_template_generation import ReportTemplateGeneration
 # from app.tool.chart_visualization.initial_information_collection import InitialInformationCollection
-from app.tool.chart_visualization.chart_prepare import VisualizationPrepare
-from app.tool.chart_visualization.select_insights import SelectInsights
-from app.tool.chart_visualization.add_insights import AddInsights
-from app.tool.chart_visualization.data_visualization import DataVisualization
-from app.tool.chart_visualization.v2.search_html_library import SearchHtmlLibrary
-from app.tool.chart_visualization.v2.initial_report_generation import GenerateInitialReport
-from app.tool.chart_visualization.v2.report_template_generation import ReportTemplateGeneration
-from app.tool.chart_visualization.v2.final_report_generation import GenerateFinalReport
-from app.tool.chart_visualization.v2.report_beautify import ReportBeautify
 
 
 class DataAnalysis(ToolCallAgent):
@@ -81,5 +81,5 @@ class DataAnalysis(ToolCallAgent):
             DataVisualization(),
             SelectInsights(),
             Terminate(),
-        )
+        ),
     )
