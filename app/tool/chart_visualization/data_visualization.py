@@ -76,7 +76,7 @@ Outputs: Charts (png/html)"""
 
     def load_chart_with_css(self, chart_path):
         # 读取 HTML 文件
-        with open(chart_path, 'r', encoding='utf-8') as f:
+        with open(chart_path, "r", encoding="utf-8") as f:
             html_content = f.read()
 
         # 在 <head> 里插入 CSS
@@ -101,7 +101,7 @@ Outputs: Charts (png/html)"""
         else:
             html_content = css + html_content
 
-        with open(chart_path, 'w', encoding='utf-8') as f:
+        with open(chart_path, "w", encoding="utf-8") as f:
             f.write(html_content)
 
     def success_output_template(self, result: list[dict[str, str]]) -> str:
@@ -109,7 +109,7 @@ Outputs: Charts (png/html)"""
         if len(result) == 0:
             return "Is EMPTY!"
         for item in result:
-            chart_path=item['chart_path']
+            chart_path = item["chart_path"]
             self.load_chart_with_css(chart_path)
             content += f"""## {item['title']}\nChart saved in: {item['chart_path']}"""
             if "insight_path" in item and item["insight_path"] and "insight_md" in item:

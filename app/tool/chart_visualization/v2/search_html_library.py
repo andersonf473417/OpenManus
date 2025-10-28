@@ -1,14 +1,15 @@
-from app.tool.base import BaseTool, ToolResult
-from typing import ClassVar, Dict
-from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pathlib import Path
+from typing import ClassVar, Dict
+
 from app.config import config
+from app.tool.base import BaseTool, ToolResult
 from app.tool.file_operators import (
     FileOperator,
     LocalFileOperator,
     PathLike,
     SandboxFileOperator,
 )
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 from typing import List
 
 class SearchHtmlLibraryResponse(ToolResult):
@@ -45,11 +46,11 @@ class SearchHtmlLibrary(BaseTool):
     parameters: dict = {
         "type": "object",
         "properties": {
-            "report_bootstrap_theme":{
+            "report_bootstrap_theme": {
                 "description": "The theme of bootstrap template to use.",
                 "enum": [
                     # Light themes
-                    "Brite"
+                    "Brite",
                     "Cerulean",
                     "Materia",
                     "Cosmo",
@@ -101,7 +102,6 @@ class SearchHtmlLibrary(BaseTool):
     _local_operator: LocalFileOperator = LocalFileOperator()
     _sandbox_operator: SandboxFileOperator = SandboxFileOperator()
 
-    # def _get_operator(self, use_sandbox: bool) -> FileOperator:
     def _get_operator(self) -> FileOperator:
         """Get the appropriate file operator based on execution mode."""
         return (
