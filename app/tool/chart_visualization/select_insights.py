@@ -1,15 +1,16 @@
 from app.tool.chart_visualization.python_execute import NormalPythonExecute
+
+
 class SelectInsights(NormalPythonExecute):
     name: str = "insights_selection"
     description: str = (
         "This tool analyzes data_visualization tool's outputs and identifies key data insights for each chart."
-        "based on their importance ranking. Insights are prioritized in three tiers:\n"
+        " based on their importance ranking. Insights are prioritized in three tiers:\n"
         "1 **Critical Insights**: 'abnormal_trend', 'abnormal_band', 'turning_point', 'overall_trend'\n"
         "2 **Important Insights**: 'outlier', 'extreme_value', 'majority_value', 'avg'\n"
         "3 **Basic Insights**: 'min', 'max'\n\n"
         "**!Must be called immediately after data_visualization completes!**"
         "**!All insights_id must come from the data_visualization analysis results!**"
-
     )
     parameters: dict = {
         "type": "object",
