@@ -1,9 +1,11 @@
 import asyncio
 import os
 import sys
-print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
+
 from app.agent.data_analysis import DataAnalysis
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
+print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 
 
 # from app.agent.manus import Manus
@@ -13,241 +15,17 @@ async def main():
     agent = DataAnalysis()
     # agent = Manus()
     await agent.run(
-#         """Requirement:
-# 1. Analyze the following data and generate a graphical data report in HTML format. The final product should be a data report.
-# Data:
-# Month | Team A | Team B | Team C
-# January | 1200 hours | 1350 hours | 1100 hours
-# February | 1250 hours | 1400 hours | 1150 hours
-# March | 1180 hours | 1300 hours | 1300 hours
-# April | 1220 hours | 1280 hours | 1400 hours
-# May | 1230 hours | 1320 hours | 1450 hours
-# June | 1200 hours | 1250 hours | 1500 hours  """
-# Date,Type,Value
-# 2023-01-01,Product A,52.9
-# 2023-01-01,Product B,63.6
-# 2023-01-01,Product C,11.2
-# 2023-01-02,Product A,45.7
-# 2023-01-02,Product B,89.1
-# 2023-01-02,Product C,21.4
-# 2023-01-03,Product A,67.2
-# 2023-01-03,Product B,82.4
-# 2023-01-03,Product C,31.7
-# 2023-01-04,Product A,80.7
-# 2023-01-04,Product B,55.1
-# 2023-01-04,Product C,21.1
-# 2023-01-05,Product A,65.6
-# 2023-01-05,Product B,78
-# 2023-01-05,Product C,31.3
-# 2023-01-06,Product A,75.6
-# 2023-01-06,Product B,89.1
-# 2023-01-06,Product C,63.5
-# 2023-01-07,Product A,67.3
-# 2023-01-07,Product B,77.2
-# 2023-01-07,Product C,43.7
-# 2023-01-08,Product A,96.1
-# 2023-01-08,Product B,97.6
-# 2023-01-08,Product C,59.9
-# 2023-01-09,Product A,96.1
-# 2023-01-09,Product B,100.6
-# 2023-01-09,Product C,66.8
-# 2023-01-10,Product A,101.6
-# 2023-01-10,Product B,108.3
-# 2023-01-10,Product C,56.9
-
-# Table1: 用户基本信息
-# Name,Age,Gender,Height(cm),Weight(kg),MeasureDate
-# 王小明,32,男,175.5,72.3,2023-10-01
-
-# Table2: 身体成分数据
-# Date,BodyFat(%),MuscleMass(kg),WaterContent(%),BoneMass(kg),VisceralFat,BMR(kcal),Protein(%)
-# 2023-10-01,22.5,52.1,55.3,3.1,8,1650,18.7
-
-# Table3: 每日营养活动数据
-# Date,CaloriesIntake(kcal),CaloriesBurned(kcal),ProteinIntake(g),CarbIntake(g),FatIntake(g),Steps,ActiveMinutes,SleepHours,MorningWeight(kg)
-# 2023-09-01,2150,1850,125,240,65,8560,45,7.2,73.1
-# 2023-09-02,1980,2100,110,210,58,10200,65,6.8,72.8
-# 2023-09-03,2300,1750,135,260,70,7200,30,8.1,72.9
-# 2023-09-04,2050,1950,120,225,62,8900,50,7.5,72.6
-# 2023-09-05,2400,2250,140,280,75,11500,75,6.5,72.4
-# 2023-09-06,1900,1800,105,200,55,8300,40,7.8,72.2
-# 2023-09-07,2250,2050,130,250,68,9700,60,7.0,72.0
-# 2023-09-08,2100,1900,115,230,60,8800,45,7.3,71.9
-# 2023-09-09,2350,2200,138,265,72,10800,70,6.7,71.7
-# 2023-09-10,2000,1850,118,215,57,8500,42,7.6,71.5
-# 2023-09-11,2200,1950,128,235,65,9200,55,7.1,71.4
-# 2023-09-12,2450,2300,145,290,78,11200,80,6.4,71.2
-# 2023-09-13,1950,1820,108,205,53,8400,38,7.7,71.0
-# 2023-09-14,2300,2080,132,255,70,9900,62,6.9,70.8
-# 2023-09-15,2080,1920,122,220,61,8700,48,7.4,70.7
-# 2023-09-16,2380,2250,140,270,74,10700,72,6.6,70.5
-# 2023-09-17,2020,1870,116,218,58,8600,43,7.5,70.3
-# 2023-09-18,2280,2120,131,245,69,9500,58,6.8,70.1
-# 2023-09-19,2420,2280,142,285,77,11000,78,6.3,70.0
-# 2023-09-20,1970,1830,109,208,54,8250,39,7.6,69.9
-# 2023-09-21,2320,2100,134,258,71,9800,60,6.7,69.7
-# 2023-09-22,2120,1940,124,228,63,8950,50,7.2,69.6
-# 2023-09-23,2360,2220,139,272,75,10500,74,6.5,69.4
-# 2023-09-24,2040,1880,119,222,59,8650,44,7.4,69.3
-# 2023-09-25,2260,2150,130,248,68,9600,57,6.9,69.1
-# 2023-09-26,2430,2290,143,287,76,10900,77,6.2,68.9
-# 2023-09-27,1990,1840,111,212,56,8350,40,7.5,68.8
-# 2023-09-28,2340,2130,135,263,72,9750,61,6.6,68.6
-# 2023-09-29,2140,1960,126,232,64,9050,52,7.1,68.5
-# 2023-09-30,2370,2240,141,275,74,10600,73,6.4,68.3
-
-# Table4: 健康指标参考范围
-# Category,SubCategory,Range,Unit
-# BMI,Underweight,<18.5,kg/m²
-# BMI,Normal,18.5-24.9,kg/m²
-# BMI,Overweight,25-29.9,kg/m²
-# BMI,Obese,≥30,kg/m²
-# BodyFat,Male(20-39),8-19,%
-# BodyFat,Female(20-39),21-33,%
-# VisceralFat,Normal,1-9,Level
-# VisceralFat,High,10-14,Level
-# VisceralFat,Very High,≥15,Level
-# Sleep,Recommended,7-9,hours
-# Steps,Active,≥10000,steps/day
-
-
-# Table1: 用户基本信息
-# Name,Age,Gender,Height(cm),Weight(kg),MeasureDate
-# 张三,45,男,170,98.6,2023-10-01
-
-# Table2: 身体成分数据
-# Date,BodyFat(%),MuscleMass(kg),WaterContent(%),BoneMass(kg),VisceralFat,BMR(kcal),Protein(%)
-# 2023-10-01,35.2,42.3,43.1,2.8,18,1420,14.2
-
-# Table3: 每日营养活动数据
-# Date,CaloriesIntake(kcal),CaloriesBurned(kcal),ProteinIntake(g),CarbIntake(g),FatIntake(g),Steps,ActiveMinutes,SleepHours,MorningWeight(kg)
-# 2023-09-01,3850,1250,85,480,120,3200,12,5.2,99.2
-# 2023-09-02,4200,1100,90,520,135,2800,8,4.8,99.5
-# 2023-09-03,3600,950,78,450,110,2500,5,5.5,99.8
-# 2023-09-04,3950,1050,82,490,125,2900,10,4.5,100.1
-# 2023-09-05,4100,1150,88,510,130,3100,15,5.0,100.3
-# 2023-09-06,3750,980,80,460,115,2600,6,4.7,100.6
-# 2023-09-07,4300,1200,92,540,140,3300,18,4.3,100.9
-# 2023-09-08,3450,900,75,430,105,2400,4,5.2,101.2
-# 2023-09-09,4000,1000,84,500,122,2700,9,4.9,101.5
-# 2023-09-10,3800,975,79,470,118,2550,7,5.1,101.8
-# 2023-09-11,4150,1100,86,515,128,3000,14,4.6,102.0
-# 2023-09-12,3550,925,77,440,108,2300,3,5.4,102.3
-# 2023-09-13,4250,1180,94,530,138,3400,20,4.2,102.6
-# 2023-09-14,3700,990,81,465,113,2650,8,5.3,102.9
-# 2023-09-15,4050,1070,87,505,127,2950,13,4.8,103.1
-# 2023-09-16,3500,910,76,435,104,2250,2,5.6,103.4
-# 2023-09-17,3900,1020,83,485,120,2750,11,4.7,103.7
-# 2023-09-18,4350,1250,96,550,145,3500,22,4.0,104.0
-# 2023-09-19,3650,960,79,455,112,2450,5,5.2,104.3
-# 2023-09-20,4000,1030,85,495,124,2850,12,4.9,104.5
-# 2023-09-21,3450,890,74,425,103,2200,1,5.5,104.8
-# 2023-09-22,3850,995,82,475,119,2700,10,4.6,105.1
-# 2023-09-23,4100,1120,89,515,131,3050,16,4.3,105.4
-# 2023-09-24,3550,935,77,440,107,2350,4,5.4,105.7
-# 2023-09-25,3950,1010,84,490,123,2800,13,4.8,106.0
-# 2023-09-26,4200,1150,91,525,136,3200,19,4.1,106.3
-# 2023-09-27,3600,945,78,445,109,2400,6,5.3,106.6
-# 2023-09-28,4050,1080,87,505,128,2900,15,4.7,106.9
-# 2023-09-29,3750,970,80,460,116,2600,9,5.0,107.2
-# 2023-09-30,4300,1220,95,540,142,3350,23,3.9,107.5
-
-# Table4: 健康指标参考范围
-# Category,SubCategory,Range,Unit
-# BMI,Underweight,<18.5,kg/m²
-# BMI,Normal,18.5-24.9,kg/m²
-# BMI,Overweight,25-29.9,kg/m²
-# BMI,Obese,≥30,kg/m²
-# BodyFat,Male(40-59),11-22,%
-# BodyFat,Female(40-59),23-34,%
-# VisceralFat,Normal,1-9,Level
-# VisceralFat,High,10-14,Level
-# VisceralFat,Very High,≥15,Level
-# Sleep,Recommended,7-9,hours
-# Steps,Active,≥10000,steps/day
-# Table 1: Tourist Demographic Profile (Sample: 1,000 respondents)
-# AgeGroup,Gender,IncomeLevel,TravelFrequency,PreferredDestinationType
-# 18-25,Female,Medium,3,Cultural
-# 26-35,Male,High,5,Adventure
-# 36-45,Female,High,2,Beach
-# 46-55,Male,Medium,1,Historical
-# 56+,Female,Low,1,Nature
-
-# Table 2: Monthly Tourism Performance (2025)
-# Month,DomesticTravelers(M),IntlArrivals(M),AvgSpend($),OccupancyRate(%),AvgStayDuration(nights)
-# Jan,85.2,4.3,680,72,4.2
-# Feb,78.5,3.8,650,68,3.9
-# Mar,92.1,5.1,720,78,4.5
-# Apr,88.7,4.9,710,75,4.3
-# May,95.4,5.6,750,82,4.8
-# Jun,103.2,6.3,790,88,5.1
-# Jul,110.5,7.0,820,92,5.4
-# Aug,108.9,6.8,810,90,5.3
-# Sep,97.6,5.9,770,83,4.9
-# Oct,91.3,5.2,730,77,4.4
-# Nov,84.0,4.5,690,71,4.1
-# Dec,87.5,4.8,700,74,4.2
-
-# Table 3: Destination Popularity Ranking
-# Rank,Destination,Country,Visitors2025(M),GrowthRate(%),AvgRating(5),TopAttractions
-# 1,Bali,Indonesia,8.2,+18.3,4.7,Beaches,Culture
-# 2,Paris,France,7.8,+12.5,4.6,Museums,Landmarks
-# 3,Tokyo,Japan,7.5,+22.1,4.8,Technology,Cuisine
-# 4,Rome,Italy,6.9,+15.7,4.5,History,Architecture
-# 5,New York,USA,6.7,+9.8,4.4,Shopping,Entertainment
-# 6,Sydney,Australia,5.8,+14.2,4.6,Nature,Wildlife
-# 7,Cape Town,South Africa,5.3,+25.6,4.7,Adventure,Scenery
-# 8,Barcelona,Spain,5.1,+11.9,4.5,Architecture,Beaches
-# 9,Dubai,UAE,4.9,+7.5,4.3,Luxury,Shopping
-# 10,Bangkok,Thailand,4.7,+19.8,4.4,Culture,Food
-
-
-# Table 4: Travel Spending Breakdown
-# Category,Percentage2025,Percentage2024,Change(pp)
-# Accommodation,32,35,-3
-# Food&Beverage,25,27,-2
-# Transportation,20,18,+2
-# Activities,15,12,+3
-# Shopping,8,8,0
-
-
-# Table 5: Booking Channel Performance
-# Channel,Bookings2025(M),MarketShare(%),ConversionRate(%),AvgBookingValue($)
-# OTA,45.2,38,12,850
-# Direct,32.7,28,8,920
-# MobileApp,25.8,22,15,780
-# TravelAgent,14.3,12,5,1100
-
-
-# Table 6: Travel Purpose Segmentation
-# Purpose,Percentage,AvgSpend($),AvgDuration(nights)
-# Leisure,62,1250,7.2
-# Business,23,1850,3.5
-# VisitingFriends,10,850,5.8
-# Education,5,3200,28.4
-
-
-# Table 7: Accommodation Preferences
-# Type,Percentage,AvgNightlyRate($),Satisfaction(5)
-# Hotel,45,120,4.2
-# VacationRental,30,95,4.4
-# Hostel,15,35,3.8
-# Resort,10,220,4.6
-
-
-# Table 8: Transportation Mode Share
-# Mode,Domestic(%),International(%),AvgDistance(km)
-# Air,25,68,1200
-# Car,55,12,350
-# Train,15,8,180
-# Bus,5,12,90
-
-
-# Table 9: Seasonal Demand Patterns
-# Quarter,DemandIndex,AvgPriceIndex,OccupancyRate(%)
-# Q1,85,95,72
-# Q2,92,100,78
-# Q3,100,120,88
+        """Requirement:
+1. Analyze the following data and generate a graphical data report in HTML format. The final product should be a data report.
+Data:
+Month | Team A | Team B | Team C
+January | 1200 hours | 1350 hours | 1100 hours
+February | 1250 hours | 1400 hours | 1150 hours
+March | 1180 hours | 1300 hours | 1300 hours
+April | 1220 hours | 1280 hours | 1400 hours
+May | 1230 hours | 1320 hours | 1450 hours
+June | 1200 hours | 1250 hours | 1500 hours  """
+    )
 # Q4,88,105,75
 
 

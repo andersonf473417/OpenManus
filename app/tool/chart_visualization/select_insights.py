@@ -1,4 +1,6 @@
 from app.tool.chart_visualization.python_execute import NormalPythonExecute
+
+
 class SelectInsights(NormalPythonExecute):
     name: str = "insights_selection"
     description: str = (

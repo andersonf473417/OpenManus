@@ -1,6 +1,7 @@
-from app.tool.chart_visualization.python_execute import NormalPythonExecute
-from typing import ClassVar
 from pathlib import Path
+from typing import ClassVar
+
+from app.tool.chart_visualization.python_execute import NormalPythonExecute
 
 class GenerateInitialReport(NormalPythonExecute):
     """A tool for generating initial data analysis reports based on the report template and user's input data"""
