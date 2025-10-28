@@ -1,10 +1,7 @@
-import sys
 import asyncio
 import json
 import os
-print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
-
+import sys
 from typing import Any, Hashable
 
 import pandas as pd
@@ -14,6 +11,9 @@ from app.config import config
 from app.llm import LLM
 from app.logger import logger
 from app.tool.base import BaseTool
+
+print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 
 
 class AddInsights(BaseTool):

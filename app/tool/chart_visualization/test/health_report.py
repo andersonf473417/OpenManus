@@ -1,10 +1,12 @@
 import asyncio
 import os
 import sys
-print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
+
 from app.agent.data_analysis import DataAnalysis
 from app.agent.manus import Manus
+
+print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 
 
 # from app.agent.manus import Manus
@@ -14,7 +16,7 @@ async def main():
     # agent = DataAnalysis()
     agent = Manus()
     await agent.run(
-"""Requirement: Analyze the following data and generate a graphical data report in HTML format. The final product should be a data report.
+        """Requirement: Analyze the following data and generate a graphical data report in HTML format. The final product should be a data report.
 Table1: 用户基本信息
 Name,Age,Gender,Height(cm),Weight(kg),MeasureDate
 张三,45,男,170,98.6,2023-10-01
