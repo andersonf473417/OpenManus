@@ -1,15 +1,15 @@
-from app.tool.base import BaseTool, ToolResult
-from typing import ClassVar, Dict
-from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pathlib import Path
+from typing import ClassVar, Dict, List
+
 from app.config import config
+from app.tool.base import BaseTool, ToolResult
 from app.tool.file_operators import (
     FileOperator,
     LocalFileOperator,
     PathLike,
     SandboxFileOperator,
 )
-from typing import List
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 class SearchHtmlLibraryResponse(ToolResult):
     """Structured response from the SearchHtmlLibrary tool, inheriting ToolResult."""
@@ -45,11 +45,11 @@ class SearchHtmlLibrary(BaseTool):
     parameters: dict = {
         "type": "object",
         "properties": {
-            "report_bootstrap_theme":{
+            "report_bootstrap_theme": {
                 "description": "The theme of bootstrap template to use.",
                 "enum": [
                     # Light themes
-                    "Brite"
+                    "Brite",
                     "Cerulean",
                     "Materia",
                     "Cosmo",
