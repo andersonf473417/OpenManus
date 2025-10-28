@@ -1,5 +1,6 @@
 from app.tool.chart_visualization.python_execute import NormalPythonExecute
 
+
 class ReportBeautify(NormalPythonExecute):
     """A tool for transforming a basic health report into a professional, visually appealing final version"""
 
